@@ -2,6 +2,7 @@ import { cn } from "@/utils/cn";
 
 import { ReactNode } from "react";
 import { BackgroundGradientAnimation } from "./Gradientbg";
+import { GlobeDemo } from "./GridGlobe";
 
 type BentoGridProps = {
   className?: string;
@@ -45,7 +46,7 @@ export const BentoGridItem = ({
   return (
     <div
       className={cn(
-        "group/bento shadow-input row-span-1 relative flex flex-col justify-between space-y-4 rounded-3xl border border-neutral-200 bg-white p-4 transition duration-200 hover:shadow-xl dark:border-white/[0.2] dark:bg-black dark:shadow-none ",
+        "group/bento overflow-hidden shadow-input row-span-1 relative flex flex-col justify-between space-y-4 rounded-3xl border border-neutral-200 bg-white p-4 transition duration-200 hover:shadow-xl dark:border-white/[0.2] dark:bg-black dark:shadow-none ",
         className
       )}
       style={{
@@ -94,6 +95,34 @@ export const BentoGridItem = ({
           <div className="mt-2 mb-2 font-sans font-bold text-lg lg:text-3xl max-w-96 z-10">
             {title}
           </div>
+
+          {id === 2 && <GlobeDemo />}
+          {id === 3 && (
+            <div className="flex gap=1 lg:gap-5 w-fit absolute -right-3 lg:-right-2">
+              <div className="flex flex-col gap-3 lg:gap-3">
+                {["React.js ", "Next.js", "Typescript"].map((item) => (
+                  <span
+                    key={item}
+                    className="py-2 lg:py-4 lg:px-3 px-3 text-xs lg:text-base opacity-50 lg:opacity-100 rounded-lg text-center bg-[#10132E]"
+                  >
+                    {item}
+                  </span>
+                ))}
+                <span className="py-4 px-3 rounded-lg text-center bg-[#10132e]" />
+              </div>
+              <div className="flex flex-col gap-4 lg:gap-3">
+                <span className="py-4 px-3 rounded-lg text-center bg-[#10132e]" />
+                {["JavaScript ", "TailWind", "MongoDB"].map((item) => (
+                  <span
+                    key={item}
+                    className="py-2 lg:py-4 lg:px-3 px-3 text-xs lg:text-base opacity-50 lg:opacity-100 rounded-lg text-center bg-[#10132E]"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
