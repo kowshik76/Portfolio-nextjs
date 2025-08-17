@@ -2,10 +2,10 @@
 import React, { useRef } from "react";
 import {
   motion,
-  useAnimationFrame,
   useMotionTemplate,
   useMotionValue,
   useTransform,
+  useAnimationFrame,
 } from "framer-motion";
 import { cn } from "@/utils/cn";
 
@@ -79,23 +79,34 @@ export const MovingBorder = ({
   ry?: string;
   [key: string]: any;
 }) => {
-  const pathRef = useRef<SVGRectElement | null>(null);
+  const pathRef = useRef<SVGRectElement | null>(null); // ✅ keep SVGRectElement
   const progress = useMotionValue(0);
 
   useAnimationFrame((time) => {
     if (pathRef.current) {
-      const length = pathRef.current.getTotalLength();
+      // ✅ assert as SVGGeometryElement
+      const geometry = pathRef.current as unknown as SVGGeometryElement;
+      const length = geometry.getTotalLength();
       const pxPerMillisecond = length / duration;
       progress.set((time * pxPerMillisecond) % length);
     }
   });
 
-  const x = useTransform(progress, (val) =>
-    pathRef.current ? pathRef.current.getPointAtLength(val).x : 0
-  );
-  const y = useTransform(progress, (val) =>
-    pathRef.current ? pathRef.current.getPointAtLength(val).y : 0
-  );
+  const x = useTransform(progress, (val) => {
+    if (pathRef.current) {
+      const geometry = pathRef.current as unknown as SVGGeometryElement;
+      return geometry.getPointAtLength(val).x;
+    }
+    return 0;
+  });
+
+  const y = useTransform(progress, (val) => {
+    if (pathRef.current) {
+      const geometry = pathRef.current as unknown as SVGGeometryElement;
+      return geometry.getPointAtLength(val).y;
+    }
+    return 0;
+  });
 
   const transform = useMotionTemplate`translateX(${x}px) translateY(${y}px) translateX(-50%) translateY(-50%)`;
 
@@ -115,7 +126,7 @@ export const MovingBorder = ({
           height="100%"
           rx={rx}
           ry={ry}
-          ref={pathRef}
+          ref={pathRef} // ✅ no TS error now
         />
       </svg>
       <motion.div
