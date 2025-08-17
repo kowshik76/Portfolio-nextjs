@@ -7,7 +7,7 @@ import { FaLocationArrow } from "react-icons/fa";
 
 const Hero = () => {
   return (
-    <div className="pb-20 pt-36">
+    <div id="about" className="pb-20 pt-36">
       <div>
         <Spotlight
           className="top-40 left-10 md:left-32 md:top-20 h-screen"
@@ -42,7 +42,7 @@ const Hero = () => {
             words="Transforming Concepts into Seamless Experiences"
           />
           <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl">
-            Hi , I'm Kowshik Sangada,a Full Stack Developer
+            Hi , I'm Kowshik Sangada,a Web Developer
           </p>
           <a href="#about">
             <MagicButton
