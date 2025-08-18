@@ -1,7 +1,7 @@
 export const navItems = [
   { name: "About", link: "#about" },
   { name: "Projects", link: "#projects" },
-  { name: "Testimonials", link: "#testimonials" },
+  { name: "BTS", link: "#BTS" },
   { name: "Contact", link: "#contact" },
 ];
 
@@ -75,7 +75,7 @@ export const projects = [
     id: 1,
     title: "EnoteBook - Note it everywhere",
     des: "A full-stack notes application that allows users to securely create, edit, and manage notes anytime, anywhere.",
-    img: "/enotebook.png",
+    img: "/enotebook.svg",
     iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/three.svg", "/fm.svg"],
     link: "https://enotebook-uor5.onrender.com/enotebook",
   },

@@ -7,7 +7,7 @@ import { InfiniteMovingCards } from "./ui/InfiniteMovingCards";
 
 const SlidingInfo = () => {
   return (
-    <section id="testimonials" className="py-20">
+    <section id="BTS" className="py-20">
       <h1 className="heading">
         Beyond the code -
         <span className="text-purple-300"> what Defines me</span>

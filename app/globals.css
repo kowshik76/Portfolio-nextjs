@@ -1,5 +1,34 @@
 @import "tailwindcss";
 
+/* Force dark mode regardless of system preference */
+:root {
+  color-scheme: dark;
+}
+
+html {
+  color-scheme: dark;
+}
+
+/* Override system light mode preference */
+@media (prefers-color-scheme: light) {
+  html,
+  body {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+  }
+
+  /* Force dark mode for all elements */
+  * {
+    color-scheme: dark !important;
+  }
+}
+
+/* Ensure dark theme always */
+body {
+  background-color: #000000;
+  color: #ffffff;
+}
+
 @layer utilities {
   .animate-spotlight {
     animation: spotlight 2s ease 0.75s 1 forwards;
@@ -22,6 +51,18 @@
     opacity: 1;
     transform: translate(-50%, -40%) scale(1);
   }
+}
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
 }
 @theme inline {
   --animate-first: moveVertical 30s ease infinite;
